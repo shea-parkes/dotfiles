@@ -17,5 +17,5 @@ git submodule update
 
 # Get Neovim mostly ready to go
 cd /workspaces/$RepositoryName
-poetry run pip install pynvim ipython
+# poetry run pip install pynvim ipython  # Avoid if we can help it
 poetry run nvim --headless +":UpdateRemotePlugins" +"q!"
