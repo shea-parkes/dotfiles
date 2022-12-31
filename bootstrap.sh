@@ -9,9 +9,7 @@ ln -s ~/.local/squashfs-root/AppRun nvim
 
 # Bring in our custom neovim config
 echo "XDG_CONFIG_HOME=$HOME" >> .profile
-mkdir ~/.config
-cd ~/.config
-git clone https://github.com/shea-parkes/neovim-config nvim
+git clone https://github.com/shea-parkes/neovim-config ~/.config/nvim
 cd ~/.config/nvim
 git submodule init
 git submodule update
