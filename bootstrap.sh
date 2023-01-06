@@ -21,3 +21,9 @@ git submodule update
 cd /workspaces/$RepositoryName
 # poetry run pip install pynvim ipython  # Avoid if we can help it
 poetry run nvim --headless +":UpdateRemotePlugins" +"q!"
+
+# Go ahead and configure vim as well while we're at it
+git clone https://github.com/shea-parkes/vim-config ~/.vim
+cd ~/.vim
+git submodule init
+git submodule update
