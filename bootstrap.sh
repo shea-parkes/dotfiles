@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cp .tmux.conf ~
+cp .gitconfig ~
 
 # ~Manually install NeoVim
 cd ~/.local
