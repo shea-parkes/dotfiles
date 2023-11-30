@@ -28,3 +28,7 @@ git clone https://github.com/shea-parkes/vim-config ~/.vim
 cd ~/.vim
 git submodule init
 git submodule update
+
+# Setup git completions for bash
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+echo "source ~/.git-completion.bash" >> ~/.bashrc
