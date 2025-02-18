@@ -6,9 +6,9 @@ cp .gitconfig ~
 # ~Manually install NeoVim
 mkdir -p ~/.local
 cd ~/.local
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-chmod u+x nvim.appimage
-./nvim.appimage --appimage-extract
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+chmod u+x nvim-linux-x86_64.appimage
+./nvim-linux-x86_64.appimage --appimage-extract
 mkdir ~/.local/bin
 ln -s ~/.local/squashfs-root/AppRun ~/.local/bin/nvim
 
