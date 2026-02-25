@@ -2,6 +2,8 @@
 
 cp .tmux.conf ~
 cp .gitconfig ~
+mkdir ~/.copilot
+cp copilot-instructions.md ~/.copilot/
 
 # ~Manually install NeoVim
 mkdir -p ~/.local
