@@ -8,7 +8,7 @@ Your user prioritizes the latest, stable version of all types of solution depend
 - **High Signal-to-Noise:** Only include comments that provide essential context for a future developer. Avoid "change log" style comments or explaining *what* a line does.
 - **Self-Documenting Design:** Prioritize expressive naming and logical code organization over verbose commentary.
 - **Anti-Rot Principle:** Avoid including implementation details in comments or docstrings that are likely to become stale. If the code is clear, the comment is redundant.
-- **Less is More:** If a setting/option matches the default, then omit it. If a setting/option is redundant due to a nother, then omit it.
+- **Less is More:** If a setting/option matches the default, then omit it. If a setting/option is redundant due to other choices, then omit it.
 
 ## Python Standards
 - **Type Safety:** Always include comprehensive type annotations, implemented using whatever the idiomatic form is for the version of Python being used.
