@@ -9,7 +9,7 @@ if [[ "$1" =~ ^https?:// ]]; then
     echo "  $1" >&2
 else
     # Non-URL argument: try to pass through to the real xdg-open
-    real_xdg_open=$(PATH=$(echo "$PATH" | sed "s|:$HOME/.local/bin||g;s|$HOME/.local/bin:||g") command -v xdg-open)
+    real_xdg_open=$(PATH=$(echo "$PATH" | sed "s|:$HOME/.local/bin||g;s|$HOME/.local/bin:||g;s|$HOME/.local/bin$||g") command -v xdg-open)
     if [[ -n "$real_xdg_open" ]]; then
         exec "$real_xdg_open" "$@"
     fi

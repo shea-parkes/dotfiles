@@ -17,7 +17,7 @@ mkdir ~/.local/bin
 cp "${BASH_SOURCE[0]%/*}/url-capture.sh" ~/.local/bin/url-capture
 chmod +x ~/.local/bin/url-capture
 ln -sf ~/.local/bin/url-capture ~/.local/bin/xdg-open
-echo 'export BROWSER="$HOME/.local/bin/url-capture"' >> ~/.profile
+grep -qF 'export BROWSER=' ~/.profile || echo 'export BROWSER="$HOME/.local/bin/url-capture"' >> ~/.profile
 
 ln -s ~/.local/squashfs-root/AppRun ~/.local/bin/nvim
 
