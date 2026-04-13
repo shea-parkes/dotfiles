@@ -12,6 +12,13 @@ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x8
 chmod u+x nvim-linux-x86_64.appimage
 ./nvim-linux-x86_64.appimage --appimage-extract
 mkdir ~/.local/bin
+
+# Capture browser/xdg-open URLs to a text file (for headless SSH)
+cp url-capture.sh ~/.local/bin/url-capture
+chmod +x ~/.local/bin/url-capture
+ln -s ~/.local/bin/url-capture ~/.local/bin/xdg-open
+echo 'export BROWSER="$HOME/.local/bin/url-capture"' >> ~/.profile
+
 ln -s ~/.local/squashfs-root/AppRun ~/.local/bin/nvim
 
 # Bring in our custom neovim config
