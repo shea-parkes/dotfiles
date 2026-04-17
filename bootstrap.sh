@@ -32,6 +32,12 @@ cd ~/.vim
 git submodule init
 git submodule update
 
+# Capture browser/xdg-open URLs to a text file (for headless SSH)
+cp "${BASH_SOURCE[0]%/*}/url-capture.sh" ~/.local/bin/url-capture
+chmod +x ~/.local/bin/url-capture
+ln -sf ~/.local/bin/url-capture ~/.local/bin/xdg-open
+grep -qF 'export BROWSER=' ~/.profile || echo 'export BROWSER="$HOME/.local/bin/url-capture"' >> ~/.profile
+
 # Setup git completions for bash
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 echo "source ~/.git-completion.bash" >> ~/.bashrc
