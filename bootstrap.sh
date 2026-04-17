@@ -12,13 +12,6 @@ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x8
 chmod u+x nvim-linux-x86_64.appimage
 ./nvim-linux-x86_64.appimage --appimage-extract
 mkdir ~/.local/bin
-
-# Capture browser/xdg-open URLs to a text file (for headless SSH)
-cp "${BASH_SOURCE[0]%/*}/url-capture.sh" ~/.local/bin/url-capture
-chmod +x ~/.local/bin/url-capture
-ln -sf ~/.local/bin/url-capture ~/.local/bin/xdg-open
-grep -qF 'export BROWSER=' ~/.profile || echo 'export BROWSER="$HOME/.local/bin/url-capture"' >> ~/.profile
-
 ln -s ~/.local/squashfs-root/AppRun ~/.local/bin/nvim
 
 # Bring in our custom neovim config
@@ -38,6 +31,12 @@ git clone https://github.com/shea-parkes/vim-config ~/.vim
 cd ~/.vim
 git submodule init
 git submodule update
+
+# Capture browser/xdg-open URLs to a text file (for headless SSH)
+cp "${BASH_SOURCE[0]%/*}/url-capture.sh" ~/.local/bin/url-capture
+chmod +x ~/.local/bin/url-capture
+ln -sf ~/.local/bin/url-capture ~/.local/bin/xdg-open
+grep -qF 'export BROWSER=' ~/.profile || echo 'export BROWSER="$HOME/.local/bin/url-capture"' >> ~/.profile
 
 # Setup git completions for bash
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
