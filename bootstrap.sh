@@ -21,10 +21,33 @@ cd ~/.config/nvim
 git submodule init
 git submodule update
 
-# Get Neovim mostly ready to go
-cd /workspaces/$RepositoryName
-# poetry run pip install pynvim ipython  # Avoid if we can help it
-poetry run nvim --headless +":UpdateRemotePlugins" +"q!"
+# Pre-compile Python treesitter parser
+PARSER_DIR="$HOME/.local/share/nvim/site/parser"
+mkdir -p "$PARSER_DIR"
+
+TEMP_BUILD_DIR=$(mktemp -d)
+echo "Building Python Tree-sitter parser in $TEMP_BUILD_DIR..."
+
+git clone --depth 1 https://github.com/tree-sitter/tree-sitter-python "$TEMP_BUILD_DIR"
+
+# Compile the .so file directly using gcc
+# -O3: Optimize for performance
+# -shared -fPIC: Required for dynamic loading by Neovim
+# -Isrc: Include the header files in the src directory
+gcc -O3 -shared -fPIC \
+    -I"$TEMP_BUILD_DIR/src" \
+    "$TEMP_BUILD_DIR/src/parser.c" \
+    "$TEMP_BUILD_DIR/src/scanner.c" \
+    -o "$PARSER_DIR/python.so"
+
+rm -rf "$TEMP_BUILD_DIR"
+echo "Python parser installed to $PARSER_DIR/python.so"
+
+mkdir -p ~/.config/nvim/queries/python
+curl -L https://raw.githubusercontent.com/tree-sitter/tree-sitter-python/master/queries/highlights.scm -o ~/.config/nvim/queries/python/highlights.scm
+curl -L https://raw.githubusercontent.com/tree-sitter/tree-sitter-python/master/queries/folds.scm -o ~/.config/nvim/queries/python/folds.scm
+curl -L https://raw.githubusercontent.com/tree-sitter/tree-sitter-python/master/queries/indents.scm -o ~/.config/nvim/queries/python/indents.scm
+
 
 # Go ahead and configure vim as well while we're at it
 git clone https://github.com/shea-parkes/vim-config ~/.vim
